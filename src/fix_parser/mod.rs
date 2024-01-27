@@ -1,8 +1,9 @@
 use std::any::Any;
 use std::collections::HashMap;
 use crate::message_struct::message_type;
+
 pub fn parse(message: String) {
-    let mut result: HashMap<&str,&str> = HashMap::new();
+    let mut result: HashMap<&str, &str> = HashMap::new();
 
     let e: Vec<&str> = message.split('|').into_iter().collect();
 
@@ -11,18 +12,17 @@ pub fn parse(message: String) {
 
         if tandem.len() == 2 {
             result.insert(tandem[0], tandem[1]);
-        }
-        else {
+        } else {
             result.insert(tandem[0], "neant");
         }
     }
 
-    result.iter().for_each(|(k,v)| print!("{} : {v} \n", tag_to_human(k)));
+    result.iter().for_each(|(k, v)| print!("{} : {v} \n", tag_to_human(k)));
 
     print!("//////////////////////////////////////////////////////////// \n")
 }
 
-pub fn tag_to_human(tag : &str) -> &str {
+pub fn tag_to_human(tag: &str) -> &str {
     let val = match tag {
         "8" => "version",
         "35" => "type",
@@ -38,10 +38,10 @@ pub fn tag_to_human(tag : &str) -> &str {
         _ => tag
     };
 
-    return val
+    return val;
 }
 
-pub fn val_to_human(k: &str, val:&str) -> Box<dyn Any> {
+pub fn val_to_human(k: &str, val: &str) -> Box<dyn Any> {
     let result = match k {
         "35" => Box::from(message_type::MessageType::from(val).value),
         _ => Box::from(String::from(val))

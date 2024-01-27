@@ -1,15 +1,17 @@
 use std::error::Error;
 use std::ffi::NulError;
 
-pub struct MessageType { pub(crate) value:String}
+pub struct MessageType {
+    pub(crate) value: String,
+}
 
-impl MessageType  {
-    pub fn from (s: &str) -> MessageType {
-        MessageType {value: get_value(s).unwrap().into_string() }
+impl MessageType {
+    pub fn from(s: &str) -> MessageType {
+        MessageType { value: get_value(s).unwrap().into_string() }
     }
 }
 
-fn get_value(s: &str)-> Result<String, NulError> {
+fn get_value(s: &str) -> Result<String, NulError> {
     let value = match s {
         "R" => "DEMANDE_COTATION",         // Demande de cotation
         "D" => "NOUVEL_ORDRE_ACHAT",      // Nouvel ordre - Achat
