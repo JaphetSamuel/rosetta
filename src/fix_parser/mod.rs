@@ -41,11 +41,11 @@ pub fn tag_to_human(tag: &str) -> &str {
     return val;
 }
 
-pub fn val_to_human(k: &str, val: &str) -> Box<dyn Any> {
-    let result = match k {
-        "35" => Box::from(message_type::MessageType::from(val).value),
-        _ => Box::from(String::from(val))
-    };
-
-    return result;
-}
+// pub fn val_to_human(k: &str, val: &str) -> Box<dyn Any> {
+//     let result = match k {
+//         "35" => Box::from(message_type::MessageType::from(val).value),
+//         _ => Box::from(String::from(val))
+//     };
+//
+//     return result;
+// }

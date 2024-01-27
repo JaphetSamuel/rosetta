@@ -7,11 +7,11 @@ pub struct MessageType {
 
 impl MessageType {
     pub fn from(s: &str) -> MessageType {
-        MessageType { value: get_value(s).unwrap().into_string() }
+        MessageType { value: get_value(s).unwrap() }
     }
 }
 
-fn get_value(s: &str) -> Result<String, NulError> {
+fn get_value(s: &str) -> String {
     let value = match s {
         "R" => "DEMANDE_COTATION",         // Demande de cotation
         "D" => "NOUVEL_ORDRE_ACHAT",      // Nouvel ordre - Achat
@@ -28,7 +28,9 @@ fn get_value(s: &str) -> Result<String, NulError> {
         "AE" => "DEFINITION_SECURITE",    // Définition de sécurité (Security Definition)
         "AF" => "DEMANDE_ETAT_SECURITE",  // Demande d'état de sécurité (Security Status Request)
         "AG" => "ETAT_SECURITE",          // État de sécurité (Security Status)
-        _ => Result::Err("Aucun matching")
+        _ => "UNDEFINED"
     };
+
+    return String::from(value);
 }
 
