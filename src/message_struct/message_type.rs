@@ -1,5 +1,4 @@
-use std::error::Error;
-use std::ffi::NulError;
+
 
 pub struct MessageType {
     pub(crate) value: String,
@@ -11,8 +10,8 @@ impl MessageType {
     }
 }
 
-fn get_value(s: &str) -> String {
-    let value = match s {
+fn get_value(s: &str) -> Option<String> {
+    let value= match s {
         "R" => "DEMANDE_COTATION",         // Demande de cotation
         "D" => "NOUVEL_ORDRE_ACHAT",      // Nouvel ordre - Achat
         "8" => "RAPPORT_EXECUTION",       // Rapport d'exécution
@@ -31,6 +30,9 @@ fn get_value(s: &str) -> String {
         _ => "UNDEFINED"
     };
 
-    return String::from(value);
+    if value == "UNDEFINED" {
+        return None
+    }
+    return Some(String::from(value));
 }
 

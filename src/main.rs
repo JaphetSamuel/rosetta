@@ -1,6 +1,7 @@
 mod fix_parser;
 mod message_struct;
 mod message_handler;
+mod connection_manager;
 
 // use std::io::{stdin};
 
